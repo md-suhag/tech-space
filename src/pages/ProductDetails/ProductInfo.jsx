@@ -60,7 +60,7 @@ const ProductInfo = ({ product, isLoading }) => {
             {product?.stock ? "✔ In Stock" : "✖ Out of Stock"}
           </p>
 
-          <AddToCartBox />
+          <AddToCartBox product={product} />
         </div>
       </section>
 
