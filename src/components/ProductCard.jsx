@@ -4,19 +4,18 @@ import { ShoppingCart, Star, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
-  const rating = 4.3;
-  const totalReviews = 87;
+  const rating = product.totalRating / product.reviewCount;
+
   const isNew = true;
-  const price = 799;
 
   return (
     <Card className="relative flex flex-col border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 bg-white">
       {/* Image */}
       <div className="relative ">
-        <Link to={`/products/$productId`}>
+        <Link to={`/products/${product._id}`}>
           <img
-            src="/sumsung.jpg"
-            alt="Samsung Galaxy A50s"
+            src={product.imageUrl}
+            alt={product.name}
             className="w-full h-64 object-contain transition-transform duration-300 group-hover:scale-105"
           />
         </Link>
@@ -33,10 +32,10 @@ const ProductCard = ({ product }) => {
       {/* Details */}
       <div className="flex flex-col gap-2 p-4">
         {/* Title */}
-        <Link to={`/products/$productId`}>
+        <Link to={`/products/${product._id}`}>
           {" "}
           <h3 className="text-sm font-semibold text-gray-800 line-clamp-2 hover:text-green-600 transition-colors">
-            Samsung Galaxy A50s Dual SIM 128GB - Super AMOLED Display
+            {product.name}
           </h3>
         </Link>
 
@@ -53,12 +52,16 @@ const ProductCard = ({ product }) => {
               }`}
             />
           ))}
-          <span className="text-xs text-gray-500 ml-1">({totalReviews})</span>
+          <span className="text-xs text-gray-500 ml-1">
+            ({product.reviewCount})
+          </span>
         </div>
 
         {/* Price */}
         <div className="flex items-center gap-2">
-          <span className="text-lg font-bold text-green-600">${price}</span>
+          <span className="text-lg font-bold text-green-600">
+            ${product.price}
+          </span>
         </div>
 
         {/* Add to Cart */}
