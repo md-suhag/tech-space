@@ -10,74 +10,189 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Link, useNavigate } from "react-router-dom";
+import * as z from "zod";
+import { Eye, EyeOff, Loader2 } from "lucide-react";
+import { useLoginMutation } from "@/redux/features/auth/authApi";
+import { useDispatch } from "react-redux";
+import { saveToAuth } from "@/redux/features/auth/AuthSlice";
+import { toast } from "sonner";
+// Form validation schema
+const signInSchema = z.object({
+  email: z
+    .string()
+    .min(1, "Email is required")
+    .email("Please enter a valid email address"),
+  password: z.string().min(1, "Password is required"),
+});
 
 const SignIn = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [login, { isLoading: isLoginLoading }] = useLoginMutation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const form = useForm({
+    resolver: zodResolver(signInSchema),
     defaultValues: {
       email: "",
       password: "",
     },
   });
-  function onSubmit(values) {
-    console.log(values);
+
+  const { isSubmitting } = form.formState;
+
+  async function onSubmit(values) {
+    try {
+      const result = await login(values).unwrap();
+
+      dispatch(saveToAuth(result));
+
+      // Show success message
+      toast.success("Sign in successful!");
+
+      // Redirect to dashboard or intended page
+      navigate("/");
+    } catch (error) {
+      console.error("Sign in error:", error);
+      // Handle different types of errors
+      let errorMessage = "Invalid email or password. Please try again.";
+
+      if (error?.data?.message) {
+        errorMessage = error.data.message;
+      } else if (error?.message) {
+        errorMessage = error.message;
+      }
+
+      // Set form error
+      form.setError("root", {
+        type: "manual",
+        message: errorMessage,
+      });
+
+      // Also show toast error
+      toast.error(errorMessage);
+    }
   }
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <Container>
-      <Form {...form} className="">
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8 md:w-1/2 max-w-[500px] m-auto  my-20 p-3 border rounded-md"
-        >
-          <h1 className=" text-2xl text-center mt-4 text-gray-800">
-            Sign In to your account
-          </h1>
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input placeholder="Enter your email" {...field} />
-                </FormControl>
-                <FormDescription className="sr-only">
-                  Enter your Email.
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Password</FormLabel>
-                <FormControl>
-                  <Input placeholder="Enter your password" {...field} />
-                </FormControl>
-                <FormDescription className="sr-only">
-                  Enter your Password.
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <Button type="submit" className="w-full ">
-            Sign In
-          </Button>
+      <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full space-y-8">
+          <div>
+            <h1 className="text-3xl font-bold text-center text-gray-900 mb-2">
+              Sign In
+            </h1>
+            <p className="text-center text-gray-600">
+              Welcome back! Please sign in to your account
+            </p>
+          </div>
 
-          <FormDescription className="mt-4 text-center text-sm">
-            Don&apos;t have an account?{" "}
-            <Link to="/sign-up" className="underline underline-offset-4">
-              Sign up
-            </Link>
-          </FormDescription>
-        </form>
-      </Form>
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="space-y-6 bg-white p-8 border border-gray-200 rounded-lg shadow-sm"
+            >
+              {/* Root error message */}
+              {form.formState.errors.root && (
+                <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-md text-sm">
+                  {form.formState.errors.root.message}
+                </div>
+              )}
+
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-gray-700 font-medium">
+                      Email Address
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        type="email"
+                        placeholder="Enter your email address"
+                        className="h-11"
+                        disabled={isSubmitting}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-gray-700 font-medium">
+                      Password
+                    </FormLabel>
+                    <FormControl>
+                      <div className="relative">
+                        <Input
+                          type={showPassword ? "text" : "password"}
+                          placeholder="Enter your password"
+                          className="h-11 pr-10"
+                          disabled={isSubmitting}
+                          {...field}
+                        />
+                        <button
+                          type="button"
+                          onClick={togglePasswordVisibility}
+                          className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
+                          disabled={isSubmitting}
+                        >
+                          {showPassword ? (
+                            <EyeOff className="h-4 w-4" />
+                          ) : (
+                            <Eye className="h-4 w-4" />
+                          )}
+                        </button>
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <Button
+                type="submit"
+                className="w-full h-11  text-white font-medium"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Signing in...
+                  </>
+                ) : (
+                  "Sign In"
+                )}
+              </Button>
+
+              <p className="text-center text-sm text-gray-600">
+                Don't have an account?{" "}
+                <Link
+                  to="/sign-up"
+                  className="font-medium text-primary  hover:underline"
+                >
+                  Sign up
+                </Link>
+              </p>
+            </form>
+          </Form>
+        </div>
+      </div>
     </Container>
   );
 };

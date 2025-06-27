@@ -115,7 +115,7 @@ export default function Category() {
         >
           {categories.map((category, index) => {
             return (
-              <SwiperSlide className="border rounded-[2px]">
+              <SwiperSlide className="border rounded-[2px]" key={index}>
                 {" "}
                 <Link to={`/products?cateory=${category.name}`}>
                   <div
