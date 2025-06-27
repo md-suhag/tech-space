@@ -8,7 +8,6 @@ const ProductCard = ({ product }) => {
   const totalReviews = 87;
   const isNew = true;
   const price = 799;
-  const discount = 10; // percent
 
   return (
     <Card className="relative flex flex-col border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 bg-white">

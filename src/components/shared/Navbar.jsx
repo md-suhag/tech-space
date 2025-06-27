@@ -30,10 +30,8 @@ const Navbar = () => {
             <ShoppingCartIcon />
           </Link>
 
-          <Link href="/sing-up">Sign up</Link>
-
           <Link
-            href="/sing-in"
+            to="/sign-in"
             className="px-2 py-1 text-black bg-white rounded-sm shadow"
           >
             Sign in
