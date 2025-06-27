@@ -53,7 +53,7 @@ const SignIn = () => {
 
       // Show success message
       toast.success("Sign in successful!");
-
+      form.reset();
       // Redirect to dashboard or intended page
       navigate("/");
     } catch (error) {
