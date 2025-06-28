@@ -2,10 +2,13 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
-import { HeartIcon, Menu, User } from "lucide-react";
+import { HeartIcon, Menu } from "lucide-react";
 import { Link } from "react-router-dom";
 import CartIcon from "../cart/CartIcon";
+import { useSelector } from "react-redux";
+import { UserMenu } from "./navbar/UserMenu";
 const Navbar = () => {
+  const user = useSelector((state) => state.authR.user);
   return (
     <nav className="p-4 text-white border-b bg-primary">
       <div className="container flex items-center justify-between px-4 mx-auto">
@@ -30,13 +33,16 @@ const Navbar = () => {
             {" "}
             <CartIcon />
           </Link>
-
-          <Link
-            to="/sign-in"
-            className="px-2 py-1 text-black bg-white rounded-sm shadow"
-          >
-            Sign in
-          </Link>
+          {user ? (
+            <UserMenu name={user.name} email={user.email} />
+          ) : (
+            <Link
+              to="/sign-in"
+              className="px-2 py-1 text-black bg-white rounded-sm shadow"
+            >
+              Sign in
+            </Link>
+          )}
         </div>{" "}
         <Sheet>
           <SheetTrigger asChild>

@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import * as z from "zod";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { useLoginMutation } from "@/redux/features/auth/authApi";
@@ -34,6 +34,8 @@ const SignIn = () => {
   const [login, { isLoading: isLoginLoading }] = useLoginMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const form = useForm({
     resolver: zodResolver(signInSchema),
@@ -55,7 +57,7 @@ const SignIn = () => {
       toast.success("Sign in successful!");
       form.reset();
       // Redirect to dashboard or intended page
-      navigate("/");
+      navigate(from, { replace: true });
     } catch (error) {
       console.error("Sign in error:", error);
       // Handle different types of errors
