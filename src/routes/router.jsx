@@ -43,7 +43,7 @@ const router = createBrowserRouter([
       {
         path: "/checkout",
         element: (
-          <ProtectedRoutes role="user">
+          <ProtectedRoutes role="customer">
             <Checkout />
           </ProtectedRoutes>
         ),
@@ -51,7 +51,7 @@ const router = createBrowserRouter([
       {
         path: "/payment/success/:id",
         element: (
-          <ProtectedRoutes role="user">
+          <ProtectedRoutes role="customer">
             <PaymentSuccess />
           </ProtectedRoutes>
         ),
@@ -59,7 +59,7 @@ const router = createBrowserRouter([
       {
         path: "/payment/fail/:id",
         element: (
-          <ProtectedRoutes role="user">
+          <ProtectedRoutes role="customer">
             <PaymentFail />
           </ProtectedRoutes>
         ),
@@ -92,14 +92,14 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "index",
+        index: true,
         element: <Dashboard />,
       },
 
       {
         path: "my-orders",
         element: (
-          <ProtectedRoutes role="user">
+          <ProtectedRoutes role="customer">
             <MyOrders />
           </ProtectedRoutes>
         ),
