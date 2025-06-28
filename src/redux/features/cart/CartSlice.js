@@ -56,9 +56,21 @@ const cartSlice = createSlice({
       }
     },
     removeFromCart: (state, action) => {
-      state.cartItems = state.cartItems.filter(
-        (item) => item._id !== action.payload
+      const index = state.cartItems.findIndex(
+        (item) => item._id === action.payload
       );
+
+      if (index !== -1) {
+        const item = state.cartItems[index];
+        state.totalQuantity -= item.quantity;
+        state.totalPrice -= item.price * item.quantity;
+        state.cartItems.splice(index, 1);
+        state.error = null;
+        state.success = `Removed ${item.name} from the cart.`;
+      } else {
+        state.error = `Item not found in cart.`;
+        state.success = null;
+      }
     },
 
     clearCart: () => initialState,

@@ -11,9 +11,6 @@ const AddToCartBox = ({ product }) => {
   const dispatch = useDispatch();
   const maxStock = product?.stock ?? 0;
 
-  const error = useSelector((state) => state.cartR?.error);
-  const success = useSelector((state) => state.cartR?.success);
-
   const handleDecrease = () => {
     setQuantity((prev) => Math.max(prev - 1, 1));
   };
@@ -40,14 +37,6 @@ const AddToCartBox = ({ product }) => {
       );
     }
   };
-
-  useEffect(() => {
-    if (error || success) {
-      error && toast.error(error);
-      success && toast.success(success);
-      dispatch(clearMessages());
-    }
-  }, [error, success, dispatch]);
 
   return (
     <div className="mt-3 flex gap-2">
