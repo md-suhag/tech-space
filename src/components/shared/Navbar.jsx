@@ -2,8 +2,9 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
-import { HeartIcon, Menu, ShoppingCartIcon, User } from "lucide-react";
+import { HeartIcon, Menu, User } from "lucide-react";
 import { Link } from "react-router-dom";
+import CartIcon from "../cart/CartIcon";
 const Navbar = () => {
   return (
     <nav className="p-4 text-white border-b bg-primary">
@@ -27,7 +28,7 @@ const Navbar = () => {
           </Link>
           <Link to="/cart">
             {" "}
-            <ShoppingCartIcon />
+            <CartIcon />
           </Link>
 
           <Link
