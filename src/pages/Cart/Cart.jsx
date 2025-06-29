@@ -32,17 +32,17 @@ const Cart = () => {
     <Container>
       <section className="max-w-3xl py-8">
         <h1 className="text-3xl font-bold mb-6">Your Cart</h1>
-        <div className="space-y-4">
+        <div className="space-y-2">
           {cartItems.map((item) => (
             <Card
               key={item._id}
-              className="flex flex-col sm:flex-row items-center gap-4 shadow-sm border"
+              className="flex flex-row items-center gap-4 shadow-sm border"
             >
               {item.imageUrl && (
                 <img
                   src={item.imageUrl}
                   alt={item.name}
-                  className="w-24 h-24 object-cover rounded-md border"
+                  className="size-16 md:size-24 object-cover rounded-md border"
                 />
               )}
               <CardContent className="flex-1 flex flex-col sm:flex-row sm:items-center justify-between w-full">
@@ -51,7 +51,7 @@ const Cart = () => {
                   <p className="text-muted-foreground">${item.price} each</p>
                   <p className="text-sm">Quantity: {item.quantity}</p>
                 </div>
-                <div className="flex gap-2 mt-4 sm:mt-0">
+                <div className="flex gap-2 mt-1 sm:mt-0">
                   <Button
                     variant="outline"
                     onClick={() => handleRemove(item._id)}

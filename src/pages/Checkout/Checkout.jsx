@@ -45,115 +45,117 @@ const Checkout = () => {
   }
   return (
     <Container>
-      <div className="grid md:grid-cols-2 gap-1">
-        <div>
-          <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(onSubmit)}
-              className="space-y-6  p-8"
-            >
-              <h1 className="text-xl font-semibold text-primary">
-                Billing Details
-              </h1>
-              {/* Root error message */}
-              {form.formState.errors.root && (
-                <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-md text-sm">
-                  {form.formState.errors.root.message}
-                </div>
-              )}
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-muted-foreground ">
-                      Name
-                    </FormLabel>
-                    <FormControl>
-                      <Input
-                        type="text"
-                        placeholder="Enter your name"
-                        className="h-11"
-                        disabled={isSubmitting}
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-muted-foreground">
-                      Email Address
-                    </FormLabel>
-                    <FormControl>
-                      <Input
-                        type="email"
-                        placeholder="Enter your email address"
-                        className="h-11"
-                        disabled={isSubmitting}
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="address"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-muted-foreground">
-                      Address
-                    </FormLabel>
-                    <FormControl>
-                      <Input
-                        type="text"
-                        placeholder="Enter your address"
-                        className="h-11"
-                        disabled={isSubmitting}
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <Button
-                type="submit"
-                className="w-full h-11  text-white font-medium"
-                disabled={isSubmitting}
+      <div className="grid  md:grid-cols-2 gap-1 ">
+        <div className="order-1 md:order-0">
+          <div className="sticky top-0">
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-6  p-8"
               >
-                {isSubmitting ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Checkout...
-                  </>
-                ) : (
-                  "Checkout"
+                <h1 className="text-xl font-semibold text-primary">
+                  Billing Details
+                </h1>
+                {/* Root error message */}
+                {form.formState.errors.root && (
+                  <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-md text-sm">
+                    {form.formState.errors.root.message}
+                  </div>
                 )}
-              </Button>
-            </form>
-          </Form>
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-muted-foreground ">
+                        Name
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          type="text"
+                          placeholder="Enter your name"
+                          className="h-11"
+                          disabled={isSubmitting}
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-muted-foreground">
+                        Email Address
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          type="email"
+                          placeholder="Enter your email address"
+                          className="h-11"
+                          disabled={isSubmitting}
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="address"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-muted-foreground">
+                        Address
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          type="text"
+                          placeholder="Enter your address"
+                          className="h-11"
+                          disabled={isSubmitting}
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <Button
+                  type="submit"
+                  className="w-full h-11  text-white font-medium"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Checkout...
+                    </>
+                  ) : (
+                    "Checkout"
+                  )}
+                </Button>
+              </form>
+            </Form>
+          </div>
         </div>
-        <div className="p-8">
+        <div className=" p-8">
           <h1 className="text-xl font-semibold text-primary">Cart Summary</h1>
           <div className="my-4 ">
             {cart.cartItems.map((item) => (
-              <div key={item._id} className="flex  mb-4 gap-4">
+              <div key={item._id} className="flex  gap-4 border-b p-2">
                 <div>
                   <img
                     src={item.imageUrl}
                     alt={item.name}
-                    className="w-16 h-16 object-cover rounded text-[10px] border"
+                    className="w-16 h-16 object-cover rounded text-[10px] "
                   />
                 </div>
                 <div>
