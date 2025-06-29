@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { removeFromCart } from "@/redux/features/cart/CartSlice";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,6 @@ const Cart = () => {
     <Container>
       <section className="max-w-3xl py-8">
         <h1 className="text-3xl font-bold mb-6">Your Cart</h1>
-
         <div className="space-y-4">
           {cartItems.map((item) => (
             <Card
@@ -63,15 +63,14 @@ const Cart = () => {
             </Card>
           ))}
         </div>
-
         <Separator className="my-6" />
-
         <div className="flex justify-between items-center text-lg font-medium">
           <span>Total Items: {totalQuantity}</span>
           <span>Total Price: ${totalPrice.toFixed(2)}</span>
-        </div>
-
-        <Button className="mt-4 w-full">Proceed to Checkout</Button>
+        </div>{" "}
+        <Button className="mt-4 w-full" asChild>
+          <Link to="/checkout">Proceed to Checkout</Link>
+        </Button>
       </section>
     </Container>
   );
