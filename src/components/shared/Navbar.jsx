@@ -10,7 +10,7 @@ import { UserMenu } from "./navbar/UserMenu";
 const Navbar = () => {
   const user = useSelector((state) => state.authR.user);
   return (
-    <nav className="p-4 text-white border-b bg-primary">
+    <nav className="p-4 text-white border-b bg-primary top-0 sticky z-50">
       <div className="container flex items-center justify-between px-4 mx-auto">
         {/* Logo */}
         <div className="text-xl font-bold">

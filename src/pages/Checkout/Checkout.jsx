@@ -20,6 +20,10 @@ import { z } from "zod";
 const checkOutSchema = z.object({
   name: z.string().min(1, "Name is required"),
   email: z.string().min(1, "Email is required").email("Invalid email address"),
+  phone: z
+    .string()
+    .regex(/^(?:\+8801|8801|01)[0-9]{9}$/, "Invalid Bangladeshi phone number"),
+
   address: z.string().min(2, "Address is required"),
 });
 
@@ -31,6 +35,7 @@ const Checkout = () => {
     defaultValues: {
       name: user.name,
       email: user.email,
+      phone: "",
       address: "",
     },
   });
@@ -47,7 +52,7 @@ const Checkout = () => {
     <Container>
       <div className="grid  md:grid-cols-2 gap-1 ">
         <div className="order-1 md:order-0">
-          <div className="sticky top-0">
+          <div className="sticky top-7">
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
@@ -56,6 +61,7 @@ const Checkout = () => {
                 <h1 className="text-xl font-semibold text-primary">
                   Billing Details
                 </h1>
+
                 {/* Root error message */}
                 {form.formState.errors.root && (
                   <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-md text-sm">
@@ -68,7 +74,7 @@ const Checkout = () => {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-muted-foreground ">
-                        Name
+                        Name *
                       </FormLabel>
                       <FormControl>
                         <Input
@@ -90,12 +96,33 @@ const Checkout = () => {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-muted-foreground">
-                        Email Address
+                        Email Address *
                       </FormLabel>
                       <FormControl>
                         <Input
                           type="email"
                           placeholder="Enter your email address"
+                          className="h-11"
+                          disabled={isSubmitting}
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="phone"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-muted-foreground">
+                        Phone *
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          type="text"
+                          placeholder="Enter your telephone number"
                           className="h-11"
                           disabled={isSubmitting}
                           {...field}
@@ -112,7 +139,7 @@ const Checkout = () => {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-muted-foreground">
-                        Address
+                        Address *
                       </FormLabel>
                       <FormControl>
                         <Input
