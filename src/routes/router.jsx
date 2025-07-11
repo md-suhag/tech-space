@@ -18,6 +18,7 @@ import Cart from "@/pages/Cart/Cart";
 import Checkout from "@/pages/Checkout/Checkout";
 import AllOrders from "@/pages/Dashboard/Admin/Orders/AllOrders";
 import Customers from "@/pages/Dashboard/Admin/Cutomers/Customers";
+import PaymentCancel from "@/pages/Payment/PaymentCancel";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoutes role="customer">
             <PaymentFail />
+          </ProtectedRoutes>
+        ),
+      },
+      {
+        path: "/payment/cancel/:id",
+        element: (
+          <ProtectedRoutes role="customer">
+            <PaymentCancel />
           </ProtectedRoutes>
         ),
       },

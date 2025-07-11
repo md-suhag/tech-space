@@ -10,6 +10,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useCreateOrderMutation } from "@/redux/features/order/orderApi";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import React from "react";
@@ -30,6 +31,8 @@ const checkOutSchema = z.object({
 const Checkout = () => {
   const user = useSelector((state) => state.authR.user);
   const cart = useSelector((state) => state.cartR);
+  const [createOrder] = useCreateOrderMutation();
+
   const form = useForm({
     resolver: zodResolver(checkOutSchema),
     defaultValues: {
@@ -43,7 +46,24 @@ const Checkout = () => {
 
   async function onSubmit(values) {
     try {
-      console.log(values);
+      const userInfo = {
+        name: values.name,
+        email: values.email,
+        phone: values.phone,
+      };
+      const shippingAddress = values.address;
+      const orderItems = cart.cartItems.map((item) => {
+        return { productId: item._id, quantity: item.quantity };
+      });
+      const result = await createOrder({
+        userInfo,
+        shippingAddress,
+        orderItems,
+      }).unwrap();
+      if (result.success && result.redirectUrl) {
+        window.location.href = result.redirectUrl;
+      }
+      console.log(result);
     } catch (error) {
       console.log(error);
     }
