@@ -34,7 +34,7 @@ const categories = [
     ),
   },
   {
-    name: "Audios",
+    name: "Headphones",
     img: (
       <HeadphonesIcon className="size-7 md:size-9 lg:size-10" color="green" />
     ),

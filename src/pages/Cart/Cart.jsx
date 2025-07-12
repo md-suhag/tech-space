@@ -48,7 +48,7 @@ const Cart = () => {
               <CardContent className="flex-1 flex flex-col sm:flex-row sm:items-center justify-between w-full">
                 <div>
                   <CardTitle>{item.name}</CardTitle>
-                  <p className="text-muted-foreground">${item.price} each</p>
+                  <p className="text-muted-foreground">৳ {item.price} each</p>
                   <p className="text-sm">Quantity: {item.quantity}</p>
                 </div>
                 <div className="flex gap-2 mt-1 sm:mt-0">
