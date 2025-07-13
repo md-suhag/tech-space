@@ -117,7 +117,7 @@ export default function Category() {
             return (
               <SwiperSlide className="border rounded-[2px]" key={index}>
                 {" "}
-                <Link to={`/products?cateory=${category.name}`}>
+                <Link to={`/products?category=${category.name}`}>
                   <div
                     key={index}
                     className="flex flex-col items-center justify-center px-1 py-6"

@@ -9,8 +9,13 @@ import ProductsFilter from "./ProductsFilter";
 import ProductCardSkeleton from "@/components/modules/product/ProductCardSkeleton";
 import { PriceRangeSlider } from "../../components/modules/product/PriceRangeSlider";
 import Container from "@/components/shared/Container";
+import { useSearchParams } from "react-router-dom";
 
 const Products = () => {
+  const [searchParams] = useSearchParams();
+
+  const queryCategory = searchParams.get("category");
+
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(12);
@@ -18,7 +23,7 @@ const Products = () => {
 
   // Filters
   const [sort, setSort] = useState("newest");
-  const [category, setCategory] = useState("all");
+  const [category, setCategory] = useState(queryCategory ?? "all");
   const [search, setSearch] = useState("");
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(25000);
