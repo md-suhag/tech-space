@@ -10,6 +10,7 @@ import ProductCardSkeleton from "@/components/modules/product/ProductCardSkeleto
 import { PriceRangeSlider } from "../../components/modules/product/PriceRangeSlider";
 import Container from "@/components/shared/Container";
 import { useSearchParams } from "react-router-dom";
+import { useDebounce } from "@/hooks/useDebounce";
 
 const Products = () => {
   const [searchParams] = useSearchParams();
@@ -26,7 +27,10 @@ const Products = () => {
   const [category, setCategory] = useState(queryCategory ?? "all");
   const [search, setSearch] = useState("");
   const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(25000);
+  const [maxPrice, setMaxPrice] = useState(50000);
+
+  const debouncedMinPrice = useDebounce(minPrice, 500);
+  const debouncedMaxPrice = useDebounce(maxPrice, 500);
 
   // Fetch data with RTK Query
   const { data, isLoading, isFetching, error } = useGetAllProductsQuery({
@@ -35,8 +39,8 @@ const Products = () => {
     sort,
     ...(category !== "all" && { category }),
     search,
-    minPrice,
-    maxPrice,
+    debouncedMinPrice,
+    debouncedMaxPrice,
   });
 
   useEffect(() => {

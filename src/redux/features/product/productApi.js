@@ -9,8 +9,8 @@ const productApi = baseApi.injectEndpoints({
         sort = "newest",
         category = "",
         search = "",
-        minPrice = 0,
-        maxPrice = 1000000000,
+        debouncedMinPrice = 0,
+        debouncedMaxPrice = 50000,
       }) => {
         const params = new URLSearchParams();
         params.set("page", String(page));
@@ -18,8 +18,8 @@ const productApi = baseApi.injectEndpoints({
         params.set("sort", sort);
         params.set("category", category);
         params.set("search", search);
-        params.set("minPrice", String(minPrice));
-        params.set("maxPrice", String(maxPrice));
+        params.set("minPrice", String(debouncedMinPrice));
+        params.set("maxPrice", String(debouncedMaxPrice));
         return `/products?${params.toString()}`;
       },
 
