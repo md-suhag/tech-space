@@ -4,10 +4,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
-
+import "swiper/css/autoplay";
 // import required modules
 
-import { Navigation } from "swiper/modules";
+import { Navigation, Autoplay } from "swiper/modules";
 import {
   CameraIcon,
   ChevronLeft,
@@ -101,6 +101,11 @@ export default function Category() {
       <div className="py-2 category">
         <Swiper
           onSwiper={(swiper) => (swiperRef.current = swiper)}
+          loop={true}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
           breakpoints={{
             320: { slidesPerView: 3, slidesPerGroup: 2 },
             640: { slidesPerView: 4, slidesPerGroup: 2 },
@@ -108,7 +113,7 @@ export default function Category() {
             1280: { slidesPerView: 7, slidesPerGroup: 4 },
           }}
           spaceBetween={10}
-          modules={[Navigation]}
+          modules={[Navigation, Autoplay]}
           navigation={true}
           className=" mySwiper"
           onSlideChange={(swiper) => updateNavButtons(swiper)}

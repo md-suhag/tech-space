@@ -44,6 +44,10 @@ const Products = () => {
   });
 
   useEffect(() => {
+    setPage(1);
+    setProducts([]);
+  }, [debouncedMinPrice, debouncedMaxPrice]);
+  useEffect(() => {
     if (!data?.data) return;
     if (data.currentPage != page) return;
 
@@ -71,54 +75,67 @@ const Products = () => {
     <Container>
       {isLoading && page === 1 && <ProductCardSkeleton />}
 
-      <div className="flex flex-col gap-2 items-center justify-center  p-4">
-        <h1 className=" text-2xl font-semibold mt-2">All Products</h1>
-        <SearchBar search={search} setSearch={setSearch} />
-      </div>
+      {!isLoading && (
+        <>
+          <div className="flex flex-col gap-2 items-center justify-center  p-4">
+            <h1 className=" text-2xl font-semibold mt-2">All Products</h1>
+            <SearchBar search={search} setSearch={setSearch} />
+          </div>
 
-      <div className="flex flex-col lg:flex-row justify-between  items-center   py-4 gap-4">
-        <PriceRangeSlider
-          minPrice={minPrice}
-          maxPrice={maxPrice}
-          onChange={([newMin, newMax]) => {
-            setMinPrice(newMin);
-            setMaxPrice(newMax);
-            setPage(1);
-            setProducts([]);
-          }}
-        />
-        <ProductsFilter
-          sort={sort}
-          setSort={setSort}
-          category={category}
-          setCategory={setCategory}
-          limit={limit}
-          setLimit={setLimit}
-          setPage={setPage}
-          setProducts={setProducts}
-        />
-      </div>
+          <div className="flex flex-col lg:flex-row justify-between  items-center   py-4 gap-4">
+            <PriceRangeSlider
+              minPrice={minPrice}
+              maxPrice={maxPrice}
+              onChange={([newMin, newMax]) => {
+                setMinPrice(newMin);
+                setMaxPrice(newMax);
+              }}
+            />
+            <ProductsFilter
+              sort={sort}
+              setSort={setSort}
+              category={category}
+              setCategory={setCategory}
+              limit={limit}
+              setLimit={setLimit}
+              setPage={setPage}
+              setProducts={setProducts}
+            />
+          </div>
 
-      <p className=" text-muted-foreground">
-        Total {data?.total} products found
-      </p>
-      <section className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4  my-5">
-        {products.map((product) => (
-          <ProductCard key={product._id} product={product} />
-        ))}
+          <p className=" text-muted-foreground">
+            {data?.total > 0 && <span>Total {data?.total} products found</span>}
+            {!data?.total && <span>No products found</span>}
+          </p>
+          {isFetching && page === 1 && <ProductCardSkeleton />}
 
-        {error && <p className="text-red-500">Error loading products</p>}
-      </section>
+          <section className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4  my-5">
+            {products.map((product) => (
+              <ProductCard key={product._id} product={product} />
+            ))}
 
-      {isFetching && page > 1 && <ProductCardSkeleton />}
+            {error && (
+              <p className="text-red-500">
+                Can't load products from database. Please try again later or
+                refresh the page
+              </p>
+            )}
+          </section>
 
-      <div className="flex justify-center">
-        {hasMore && !isLoading && !isFetching && products.length > 0 && (
-          <Button className="my-4" onClick={() => setPage((prev) => prev + 1)}>
-            Load more...
-          </Button>
-        )}
-      </div>
+          {isFetching && page > 1 && <ProductCardSkeleton />}
+
+          <div className="flex justify-center">
+            {hasMore && !isLoading && !isFetching && products.length > 0 && (
+              <Button
+                className="my-4"
+                onClick={() => setPage((prev) => prev + 1)}
+              >
+                Load more...
+              </Button>
+            )}
+          </div>
+        </>
+      )}
     </Container>
   );
 };
