@@ -1,9 +1,9 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import { SidebarProvider, SidebarTrigger } from "../ui/sidebar";
-import DashboardSidebar from "../dashboard/DashboardSidebar";
+import DashboardSidebar from "../modules/dashboard/DashboardSidebar";
 import { User2Icon } from "lucide-react";
-import DashboardUserMenu from "../dashboard/DashboardUserMenu";
+import DashboardUserMenu from "../modules/dashboard/DashboardUserMenu";
 
 const DashboardLayout = () => {
   return (

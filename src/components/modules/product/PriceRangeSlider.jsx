@@ -3,8 +3,7 @@ import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
 
 export function PriceRangeSlider({
-  minPrice,
-  maxPrice,
+  query,
   onChange,
   className,
   min = 0,
@@ -14,11 +13,11 @@ export function PriceRangeSlider({
   return (
     <div className={cn("flex flex-col gap-2 w-full max-w-md", className)}>
       <div className="flex justify-between text-sm text-muted-foreground">
-        <span>৳ {minPrice}</span>
-        <span>৳ {maxPrice}</span>
+        <span>৳ {query.minPrice}</span>
+        <span>৳ {query.maxPrice}</span>
       </div>
       <Slider
-        value={[minPrice, maxPrice]}
+        value={[query.minPrice, query.maxPrice]}
         min={min}
         max={max}
         step={step}

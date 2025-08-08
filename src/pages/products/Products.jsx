@@ -4,8 +4,8 @@ import { useGetAllProductsQuery } from "@/redux/features/product/productApi";
 
 import { Button } from "@/components/ui/button";
 
-import SearchBar from "./SearchBar";
-import ProductsFilter from "./ProductsFilter";
+import SearchBar from "../../components/modules/product/SearchBar";
+import ProductsFilter from "../../components/modules/product/ProductsFilter";
 import ProductCardSkeleton from "@/components/modules/product/ProductCardSkeleton";
 import { PriceRangeSlider } from "../../components/modules/product/PriceRangeSlider";
 import Container from "@/components/shared/Container";
@@ -18,41 +18,44 @@ const Products = () => {
   const queryCategory = searchParams.get("category");
 
   const [products, setProducts] = useState([]);
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(12);
   const [hasMore, setHasMore] = useState(true);
 
-  // Filters
-  const [sort, setSort] = useState("newest");
-  const [category, setCategory] = useState(queryCategory ?? "all");
-  const [search, setSearch] = useState("");
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(50000);
+  const [query, setQuery] = useState({
+    page: 1,
+    limit: 12,
+    sort: "newest",
+    category: queryCategory ?? "all",
+    minPrice: 0,
+    maxPrice: 50000,
+    search: "",
+  });
 
-  const debouncedMinPrice = useDebounce(minPrice, 500);
-  const debouncedMaxPrice = useDebounce(maxPrice, 500);
+  const debouncedMinPrice = useDebounce(query.minPrice, 500);
+  const debouncedMaxPrice = useDebounce(query.maxPrice, 500);
+  const debouncedSearch = useDebounce(query.search, 500);
 
   // Fetch data with RTK Query
   const { data, isLoading, isFetching, error } = useGetAllProductsQuery({
-    page,
-    limit,
-    sort,
-    ...(category !== "all" && { category }),
-    search,
+    page: query.page,
+    limit: query.limit,
+    sort: query.sort,
+    ...(query.category !== "all" && { category: query.category }),
+    debouncedSearch,
     debouncedMinPrice,
     debouncedMaxPrice,
   });
 
   useEffect(() => {
-    setPage(1);
+    setQuery((prev) => ({ ...prev, page: 1 }));
     setProducts([]);
   }, [debouncedMinPrice, debouncedMaxPrice]);
+
   useEffect(() => {
     if (!data?.data) return;
-    if (data.currentPage != page) return;
+    if (data.currentPage != query.page) return;
 
     setProducts((prev) => {
-      const combined = page === 1 ? data.data : [...prev, ...data.data];
+      const combined = query.page === 1 ? data.data : [...prev, ...data.data];
 
       //  Deduplicate by `_id`
       const unique = Array.from(
@@ -62,43 +65,37 @@ const Products = () => {
       return unique;
     });
 
-    if (page === 1 && data.data.length === 0) {
+    if (query.page === 1 && data.data.length === 0) {
       setHasMore(false);
     } else if (data.totalPages) {
-      setHasMore(page < data.totalPages);
+      setHasMore(query.page < data.totalPages);
     } else {
       setHasMore(false);
     }
-  }, [data, page]);
+  }, [data, query.page]);
 
   return (
     <Container>
-      {isLoading && page === 1 && <ProductCardSkeleton />}
+      {isLoading && query.page === 1 && <ProductCardSkeleton />}
 
       {!isLoading && (
         <>
           <div className="flex flex-col gap-2 items-center justify-center  p-4">
             <h1 className=" text-2xl font-semibold mt-2">All Products</h1>
-            <SearchBar search={search} setSearch={setSearch} />
+            <SearchBar query={query} setQuery={setQuery} />
           </div>
 
           <div className="flex flex-col lg:flex-row justify-between  items-center   py-4 gap-4">
             <PriceRangeSlider
-              minPrice={minPrice}
-              maxPrice={maxPrice}
+              query={query}
               onChange={([newMin, newMax]) => {
-                setMinPrice(newMin);
-                setMaxPrice(newMax);
+                setQuery((prev) => ({ ...prev, minPrice: newMin }));
+                setQuery((prev) => ({ ...prev, maxPrice: newMax }));
               }}
             />
             <ProductsFilter
-              sort={sort}
-              setSort={setSort}
-              category={category}
-              setCategory={setCategory}
-              limit={limit}
-              setLimit={setLimit}
-              setPage={setPage}
+              query={query}
+              setQuery={setQuery}
               setProducts={setProducts}
             />
           </div>
@@ -107,7 +104,7 @@ const Products = () => {
             {data?.total > 0 && <span>Total {data?.total} products found</span>}
             {!data?.total && <span>No products found</span>}
           </p>
-          {isFetching && page === 1 && <ProductCardSkeleton />}
+          {isFetching && query.page === 1 && <ProductCardSkeleton />}
 
           <section className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4  my-5">
             {products.map((product) => (
@@ -122,13 +119,15 @@ const Products = () => {
             )}
           </section>
 
-          {isFetching && page > 1 && <ProductCardSkeleton />}
+          {isFetching && query.page > 1 && <ProductCardSkeleton />}
 
           <div className="flex justify-center">
             {hasMore && !isLoading && !isFetching && products.length > 0 && (
               <Button
                 className="my-4"
-                onClick={() => setPage((prev) => prev + 1)}
+                onClick={() =>
+                  setQuery((prev) => ({ ...prev, page: prev.page + 1 }))
+                }
               >
                 Load more...
               </Button>

@@ -15,7 +15,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "../ui/sidebar";
+} from "../../ui/sidebar";
 import { Link, NavLink, useMatch, useResolvedPath } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { SidebarNavLink } from "./SidebarNavLink";

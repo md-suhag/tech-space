@@ -8,24 +8,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-const ProductsFilter = ({
-  sort,
-  setSort,
-  category,
-  setCategory,
-  limit,
-  setLimit,
-  setPage,
-  setProducts,
-}) => {
+const ProductsFilter = ({ query, setQuery, setProducts }) => {
   return (
     <div className=" flex flex-wrap gap-1  sm:gap-4 items-center  ">
       <div>Filter:</div>
       <Select
-        value={sort}
+        value={query.sort}
         onValueChange={(value) => {
-          setSort(value);
-          setPage(1);
+          setQuery((prev) => ({ ...prev, sort: value }));
+          setQuery((prev) => ({ ...prev, page: 1 }));
           setProducts([]);
         }}
       >
@@ -45,10 +36,11 @@ const ProductsFilter = ({
         </SelectContent>
       </Select>
       <Select
-        value={category}
+        value={query.category}
         onValueChange={(value) => {
-          setCategory(value);
-          setPage(1);
+          setQuery((prev) => ({ ...prev, category: value }));
+
+          setQuery((prev) => ({ ...prev, page: 1 }));
           setProducts([]);
         }}
       >
@@ -72,10 +64,11 @@ const ProductsFilter = ({
         </SelectContent>
       </Select>
       <Select
-        value={String(limit)}
+        value={String(query.limit)}
         onValueChange={(value) => {
-          setLimit(value);
-          setPage(1);
+          setQuery((prev) => ({ ...prev, limit: value }));
+          setQuery((prev) => ({ ...prev, page: 1 }));
+
           setProducts([]);
         }}
       >

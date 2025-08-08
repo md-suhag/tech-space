@@ -1,20 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Input } from "@/components/ui/input";
 import { SearchIcon } from "lucide-react";
 
-const SearchBar = React.memo(({ search, setSearch }) => {
-  const [searchInput, setSearchInput] = useState(search);
-
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setSearch(searchInput);
-    }, 700);
-
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [searchInput, setSearch]);
-
+const SearchBar = React.memo(({ query, setQuery }) => {
   return (
     <div className="relative md:max-w-[500px] w-full">
       <SearchIcon
@@ -26,8 +14,10 @@ const SearchBar = React.memo(({ search, setSearch }) => {
         type="search"
         className="p-3 sm:py-6 sm:px-4"
         placeholder="search products"
-        value={searchInput}
-        onChange={(e) => setSearchInput(e.target.value)}
+        value={query.search}
+        onChange={(e) =>
+          setQuery((prev) => ({ ...prev, search: e.target.value }))
+        }
       />
     </div>
   );

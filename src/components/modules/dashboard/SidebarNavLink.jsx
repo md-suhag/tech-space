@@ -1,5 +1,5 @@
 import { useMatch, useResolvedPath, Link } from "react-router-dom";
-import { SidebarMenuButton } from "../ui/sidebar";
+import { SidebarMenuButton } from "../../ui/sidebar";
 
 export const SidebarNavLink = ({ to, icon: Icon, title }) => {
   let resolved = useResolvedPath(to);

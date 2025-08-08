@@ -4,7 +4,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 import { HeartIcon, Menu } from "lucide-react";
 import { Link } from "react-router-dom";
-import CartIcon from "../cart/CartIcon";
+import CartIcon from "../modules/cart/CartIcon";
 import { useSelector } from "react-redux";
 import { UserMenu } from "./navbar/UserMenu";
 const Navbar = () => {
