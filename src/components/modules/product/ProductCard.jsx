@@ -8,8 +8,10 @@ import {
 import { Button } from "@/components/ui/button";
 import { ShoppingCart, Star, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useCart } from "@/hooks/useCart";
 
 const ProductCard = ({ product }) => {
+  const { add } = useCart();
   const rating = product.totalRating / product.reviewCount;
 
   return (
@@ -65,7 +67,11 @@ const ProductCard = ({ product }) => {
           </CardDescription>
         </Link>
         {/* Add to Cart */}{" "}
-        <Button className=" flex items-center justify-center gap-2 " size="sm">
+        <Button
+          className=" flex items-center justify-center gap-2 "
+          size="sm"
+          onClick={() => add(product, 1)}
+        >
           <ShoppingCart size={16} />
           Add to Cart
         </Button>

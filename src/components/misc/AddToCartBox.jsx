@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { ShoppingCartIcon } from "lucide-react";
-import { useDispatch, useSelector } from "react-redux";
-import { addToCart, clearMessages } from "@/redux/features/cart/CartSlice";
 import { Input } from "../ui/input";
-import { toast } from "sonner";
+import { useCart } from "@/hooks/useCart";
 
 const AddToCartBox = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
-  const dispatch = useDispatch();
+  const { add } = useCart();
+
   const maxStock = product?.stock ?? 0;
 
   const handleDecrease = () => {
@@ -29,12 +28,7 @@ const AddToCartBox = ({ product }) => {
 
   const handleAddToCart = () => {
     if (quantity > 0 && quantity <= maxStock) {
-      dispatch(
-        addToCart({
-          ...product,
-          quantityToAdd: quantity,
-        })
-      );
+      add(product, quantity);
     }
   };
 

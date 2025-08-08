@@ -66,7 +66,7 @@ const Cart = () => {
         <Separator className="my-6" />
         <div className="flex justify-between items-center text-lg font-medium">
           <span>Total Items: {totalQuantity}</span>
-          <span>Total Price: ${totalPrice.toFixed(2)}</span>
+          <span>Total Price: ৳{totalPrice.toFixed(2)}</span>
         </div>{" "}
         <Button className="mt-4 w-full" asChild>
           <Link to="/checkout">Proceed to Checkout</Link>
