@@ -16,7 +16,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "../../ui/sidebar";
-import { Link, NavLink, useMatch, useResolvedPath } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { SidebarNavLink } from "./SidebarNavLink";
 const customerMenu = [
@@ -43,7 +43,7 @@ const DashboardSidebar = () => {
   const { role } = useSelector((state) => state.authR.user);
 
   return (
-    <Sidebar>
+    <Sidebar className=" shadow-xl">
       <SidebarContent className="">
         <SidebarGroup>
           <Link to="/">

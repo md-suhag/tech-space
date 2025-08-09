@@ -1,7 +1,7 @@
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import MainLayout from "@/components/layout/MainLayout";
 import Home from "@/pages/Home/Home";
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Outlet } from "react-router-dom";
 import PrivateRoutes from "./PrivateRoutes";
 import ProtectedRoutes from "./ProtectedRoutes";
 import Products from "@/pages/products/Products";
@@ -19,6 +19,7 @@ import Checkout from "@/pages/Checkout/Checkout";
 import AllOrders from "@/pages/Dashboard/Admin/Orders/AllOrders";
 import Customers from "@/pages/Dashboard/Admin/Cutomers/Customers";
 import PaymentCancel from "@/pages/Payment/PaymentCancel";
+import MyOrderDetails from "@/pages/Dashboard/User/MyOrders/MyOrderDetails";
 
 const router = createBrowserRouter([
   {
@@ -106,12 +107,22 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "my-orders",
+        path: "my-orders/",
         element: (
           <ProtectedRoutes role="customer">
-            <MyOrders />
+            <Outlet />
           </ProtectedRoutes>
         ),
+        children: [
+          {
+            index: true,
+            element: <MyOrders />,
+          },
+          {
+            path: ":id",
+            element: <MyOrderDetails />,
+          },
+        ],
       },
       {
         path: "customers",

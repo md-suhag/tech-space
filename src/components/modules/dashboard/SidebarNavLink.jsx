@@ -10,7 +10,7 @@ export const SidebarNavLink = ({ to, icon: Icon, title }) => {
       asChild
       className={`${
         match ? "bg-primary font-semibold text-white" : "text-muted-foreground"
-      } hover:text-white hover:bg-primary transition-all duration-300 min-h-14`}
+      } hover:text-white hover:bg-primary/60 transition-all duration-300 min-h-14`}
     >
       <Link to={to} className="flex items-center gap-2">
         <Icon />

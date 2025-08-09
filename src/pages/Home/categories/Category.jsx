@@ -25,39 +25,39 @@ import { Link } from "react-router-dom";
 const categories = [
   {
     name: "Computers",
-    img: <Laptop className="size-7 md:size-9 lg:size-10" color="green" />,
+    img: <Laptop className="size-7 md:size-9 lg:size-10 text-primary" />,
   },
   {
     name: "Smartphones",
     img: (
-      <SmartphoneIcon className="size-7 md:size-9 lg:size-10" color="green" />
+      <SmartphoneIcon className="size-7 md:size-9 lg:size-10 text-primary" />
     ),
   },
   {
     name: "Headphones",
     img: (
-      <HeadphonesIcon className="size-7 md:size-9 lg:size-10" color="green" />
+      <HeadphonesIcon className="size-7 md:size-9 lg:size-10 text-primary" />
     ),
   },
   {
     name: "TVs",
-    img: <TvIcon className="size-7 md:size-9 lg:size-10" color="green" />,
+    img: <TvIcon className="size-7 md:size-9 lg:size-10 text-primary" />,
   },
   {
     name: "Gamings",
-    img: <GamepadIcon className="size-7 md:size-9 lg:size-10" color="green" />,
+    img: <GamepadIcon className="size-7 md:size-9 lg:size-10 text-primary" />,
   },
   {
     name: "Cameras",
-    img: <CameraIcon className="size-7 md:size-9 lg:size-10" color="green" />,
+    img: <CameraIcon className="size-7 md:size-9 lg:size-10 text-primary" />,
   },
   {
     name: "Watches",
-    img: <WatchIcon className="size-7 md:size-9 lg:size-10" color="green" />,
+    img: <WatchIcon className="size-7 md:size-9 lg:size-10 text-primary" />,
   },
   {
     name: "Storages",
-    img: <HardDrive className="size-7 md:size-9 lg:size-10" color="green" />,
+    img: <HardDrive className="size-7 md:size-9 lg:size-10 text-primary" />,
   },
 ];
 
