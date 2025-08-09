@@ -1,6 +1,7 @@
 import {
   addToCart,
   clearCart,
+  decreaseFromCart,
   removeFromCart,
 } from "@/redux/features/cart/CartSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,6 +27,10 @@ export const useCart = () => {
     return true;
   };
 
+  const decrease = (product) => {
+    dispatch(decreaseFromCart(product));
+    toast.success(`Reduced 1 item of ${product.name} from cart.`);
+  };
   const remove = (productId) => {
     dispatch(removeFromCart(productId));
     toast.success("Removed item from cart.");
@@ -39,6 +44,7 @@ export const useCart = () => {
   return {
     cartItems,
     add,
+    decrease,
     remove,
     clear,
   };
