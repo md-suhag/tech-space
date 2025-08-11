@@ -1,21 +1,15 @@
-import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuPortal,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { logOut } from "@/redux/features/auth/AuthSlice";
-import { UserIcon } from "lucide-react";
-import { useDispatch, useSelector } from "react-redux";
+
+import { CircleUserRound, UserIcon } from "lucide-react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 export function UserMenu({ name, email }) {
@@ -23,8 +17,8 @@ export function UserMenu({ name, email }) {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <UserIcon className="cursor-pointer" />
+      <DropdownMenuTrigger asChild className=" cursor-pointer">
+        {name ? <CircleUserRound /> : <UserIcon className="" />}
       </DropdownMenuTrigger>
       <DropdownMenuContent className="min-w-56" align="end">
         <p className="text-sm font-normal opacity-90 px-2 pt-2">{name}</p>

@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
-import { HeartIcon, Menu } from "lucide-react";
+import { HeartIcon, Menu, UserIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import CartIcon from "../modules/cart/CartIcon";
 import { useSelector } from "react-redux";
@@ -25,10 +25,6 @@ const Navbar = () => {
           <Link to="/contact">Contact</Link>
         </div>
         <div className="items-center hidden space-x-4 md:flex">
-          <Link to="/">
-            {" "}
-            <HeartIcon />
-          </Link>
           <Link to="/cart">
             {" "}
             <CartIcon />
@@ -36,11 +32,8 @@ const Navbar = () => {
           {user ? (
             <UserMenu name={user.name} email={user.email} />
           ) : (
-            <Link
-              to="/sign-in"
-              className="px-2 py-1 text-black bg-white rounded-sm shadow"
-            >
-              Sign in
+            <Link to="/sign-in" className="">
+              <UserIcon className="cursor-pointer" />
             </Link>
           )}
         </div>{" "}

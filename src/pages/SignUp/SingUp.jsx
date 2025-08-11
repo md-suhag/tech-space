@@ -66,6 +66,8 @@ const SingUp = () => {
         errorMessage = error.data.message;
       } else if (error?.message) {
         errorMessage = error.message;
+      } else if (error?.error) {
+        errorMessage = "something went wrong";
       }
 
       // Set form error

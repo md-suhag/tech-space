@@ -30,16 +30,21 @@ const Cart = () => {
   if (!cartItems || cartItems.length === 0) {
     return (
       <Container>
-        <div className="text-center py-10 text-muted-foreground">
-          Your cart is empty.
-        </div>
+        <section className="text-center py-10 text-muted-foreground min-h-screen flex justify-center items-center">
+          <div>
+            <p className="mb-5">Your cart is empty.</p>
+            <Button asChild>
+              <Link to="/products">Continue Shopping</Link>
+            </Button>
+          </div>
+        </section>
       </Container>
     );
   }
 
   return (
     <Container>
-      <section className="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+      <section className="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8 min-h-screen">
         <h1 className="text-2xl font-semibold text-primary  mb-4 text-center sm:text-left">
           Your Shopping Cart
         </h1>

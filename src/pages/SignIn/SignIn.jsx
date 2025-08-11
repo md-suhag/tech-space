@@ -53,29 +53,28 @@ const SignIn = () => {
 
       dispatch(saveToAuth(result));
 
-      // Show success message
       toast.success("Sign in successful!");
       form.reset();
-      // Redirect to dashboard or intended page
-      navigate(from, { replace: true });
+
+      navigate(from || "/", { replace: true });
     } catch (error) {
       console.error("Sign in error:", error);
-      // Handle different types of errors
+
       let errorMessage = "Invalid email or password. Please try again.";
 
       if (error?.data?.message) {
         errorMessage = error.data.message;
       } else if (error?.message) {
         errorMessage = error.message;
+      } else if (error?.error) {
+        errorMessage = "something went wrong";
       }
 
-      // Set form error
       form.setError("root", {
         type: "manual",
         message: errorMessage,
       });
 
-      // Also show toast error
       toast.error(errorMessage);
     }
   }
