@@ -20,6 +20,7 @@ import AllOrders from "@/pages/Dashboard/Admin/Orders/AllOrders";
 import Customers from "@/pages/Dashboard/Admin/Cutomers/Customers";
 import PaymentCancel from "@/pages/Payment/PaymentCancel";
 import MyOrderDetails from "@/pages/Dashboard/User/MyOrders/MyOrderDetails";
+import AllOrderDetails from "@/pages/Dashboard/Admin/Orders/AllOrderDetails";
 
 const router = createBrowserRouter([
   {
@@ -132,13 +133,24 @@ const router = createBrowserRouter([
           </ProtectedRoutes>
         ),
       },
+
       {
-        path: "all-orders",
+        path: "all-orders/",
         element: (
           <ProtectedRoutes role="admin">
-            <AllOrders />
+            <Outlet />
           </ProtectedRoutes>
         ),
+        children: [
+          {
+            index: true,
+            element: <AllOrders />,
+          },
+          {
+            path: ":id",
+            element: <AllOrderDetails />,
+          },
+        ],
       },
     ],
   },
