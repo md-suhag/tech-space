@@ -27,7 +27,7 @@ const Navbar = () => {
         <div className="hidden space-x-6 md:flex">
           <Link to="/">Home</Link>
           <Link to="/products">Products</Link>
-          <Link to="/categories">Categories</Link>
+
           <Link to="/about">About</Link>
           <Link to="/contact">Contact</Link>
         </div>
@@ -57,7 +57,7 @@ const Navbar = () => {
               </SheetHeader>
               <Link to="/">Home</Link>
               <Link to="/products">Products</Link>
-              <Link to="/categories">Categories</Link>
+
               <Link to="/about">About</Link>
               <Link to="/contact">Contact</Link>
             </SheetContent>

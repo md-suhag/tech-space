@@ -24,11 +24,13 @@ import AllOrderDetails from "@/pages/Dashboard/Admin/Orders/AllOrderDetails";
 import AddProduct from "@/pages/Dashboard/Admin/AddProduct/AddProduct";
 import AllProducts from "@/pages/Dashboard/Admin/AllProducts/AllProducts";
 import EditProduct from "@/pages/Dashboard/Admin/EditProduct/EditProduct";
+import ErrorPage from "@/pages/Error/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,

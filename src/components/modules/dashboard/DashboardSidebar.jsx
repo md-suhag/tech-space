@@ -51,11 +51,6 @@ const adminMenu = [
     url: "/dashboard/all-products",
     icon: List,
   },
-  {
-    title: "Edit Products",
-    url: "/dashboard/edit-product",
-    icon: EditIcon,
-  },
 ];
 const DashboardSidebar = () => {
   const { role } = useSelector((state) => state.authR.user);
@@ -66,8 +61,10 @@ const DashboardSidebar = () => {
         <SidebarGroup>
           <Link to="/">
             {" "}
-            <SidebarGroupLabel className="cursor-pointer mb-12 pl-6 pt-6 text-2xl">
-              TECHSPACE
+            <SidebarGroupLabel className=" cursor-pointer mb-12 pl-6 pt-6 text-xl">
+              <div className="flex flex-col text-center">
+                TECHSPACE <span className="text-sm">{role} dashboard</span>
+              </div>
             </SidebarGroupLabel>
           </Link>
           <SidebarGroupContent>
