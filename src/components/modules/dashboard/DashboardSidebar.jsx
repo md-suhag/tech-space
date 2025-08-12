@@ -2,6 +2,7 @@ import {
   Home,
   ListOrdered,
   ListOrderedIcon,
+  Plus,
   Receipt,
   UsersRoundIcon,
 } from "lucide-react";
@@ -37,6 +38,11 @@ const adminMenu = [
     title: "All Orders",
     url: "/dashboard/all-orders",
     icon: Receipt,
+  },
+  {
+    title: "Add Product",
+    url: "/dashboard/add-product",
+    icon: Plus,
   },
 ];
 const DashboardSidebar = () => {
