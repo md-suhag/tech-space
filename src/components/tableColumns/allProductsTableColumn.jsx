@@ -10,7 +10,6 @@ export const allProductsTableColumns = [
       const image = row.getValue("imageUrl");
       return <img src={image} className="w-12" />;
     },
-    enableSorting: true,
   },
   {
     accessorKey: "name",

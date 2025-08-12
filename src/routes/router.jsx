@@ -23,6 +23,7 @@ import MyOrderDetails from "@/pages/Dashboard/User/MyOrders/MyOrderDetails";
 import AllOrderDetails from "@/pages/Dashboard/Admin/Orders/AllOrderDetails";
 import AddProduct from "@/pages/Dashboard/Admin/AddProduct/AddProduct";
 import AllProducts from "@/pages/Dashboard/Admin/AllProducts/AllProducts";
+import EditProduct from "@/pages/Dashboard/Admin/EditProduct/EditProduct";
 
 const router = createBrowserRouter([
   {
@@ -167,6 +168,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoutes role="admin">
             <AllProducts />
+          </ProtectedRoutes>
+        ),
+      },
+      {
+        path: "edit-product",
+        element: (
+          <ProtectedRoutes role="admin">
+            <EditProduct />
           </ProtectedRoutes>
         ),
       },

@@ -1,4 +1,5 @@
 import {
+  EditIcon,
   Home,
   List,
   ListOrdered,
@@ -49,6 +50,11 @@ const adminMenu = [
     title: "All Products",
     url: "/dashboard/all-products",
     icon: List,
+  },
+  {
+    title: "Edit Products",
+    url: "/dashboard/edit-product",
+    icon: EditIcon,
   },
 ];
 const DashboardSidebar = () => {

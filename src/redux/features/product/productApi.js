@@ -44,6 +44,15 @@ const productApi = baseApi.injectEndpoints({
         method: "POST",
         body: payload,
       }),
+      invalidatesTags: ["Products"],
+    }),
+    updateProduct: builder.mutation({
+      query: (payload) => ({
+        url: `/products/${payload.id}`,
+        method: "PUT",
+        body: payload.formData,
+      }),
+      invalidatesTags: ["Products"],
     }),
   }),
 });
@@ -53,4 +62,5 @@ export const {
   useGetSingleProductQuery,
   useGetProductReviewsQuery,
   useAddProductMutation,
+  useUpdateProductMutation,
 } = productApi;
