@@ -22,6 +22,7 @@ import PaymentCancel from "@/pages/Payment/PaymentCancel";
 import MyOrderDetails from "@/pages/Dashboard/User/MyOrders/MyOrderDetails";
 import AllOrderDetails from "@/pages/Dashboard/Admin/Orders/AllOrderDetails";
 import AddProduct from "@/pages/Dashboard/Admin/AddProduct/AddProduct";
+import AllProducts from "@/pages/Dashboard/Admin/AllProducts/AllProducts";
 
 const router = createBrowserRouter([
   {
@@ -158,6 +159,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoutes role="admin">
             <AddProduct />
+          </ProtectedRoutes>
+        ),
+      },
+      {
+        path: "all-products",
+        element: (
+          <ProtectedRoutes role="admin">
+            <AllProducts />
           </ProtectedRoutes>
         ),
       },

@@ -1,5 +1,6 @@
 import {
   Home,
+  List,
   ListOrdered,
   ListOrderedIcon,
   Plus,
@@ -43,6 +44,11 @@ const adminMenu = [
     title: "Add Product",
     url: "/dashboard/add-product",
     icon: Plus,
+  },
+  {
+    title: "All Products",
+    url: "/dashboard/all-products",
+    icon: List,
   },
 ];
 const DashboardSidebar = () => {
