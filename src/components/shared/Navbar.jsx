@@ -1,6 +1,13 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 import { HeartIcon, Menu, UserIcon } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -24,9 +31,8 @@ const Navbar = () => {
           <Link to="/about">About</Link>
           <Link to="/contact">Contact</Link>
         </div>
-        <div className="items-center hidden space-x-4 md:flex">
+        <div className="items-center space-x-4 flex">
           <Link to="/cart">
-            {" "}
             <CartIcon />
           </Link>
           {user ? (
@@ -36,21 +42,27 @@ const Navbar = () => {
               <UserIcon className="cursor-pointer" />
             </Link>
           )}
+          <Sheet>
+            <SheetTrigger asChild>
+              <button className=" cursor-pointer md:hidden">
+                <Menu className="w-6 h-6" />
+              </button>
+            </SheetTrigger>
+            <SheetContent side="left" className="flex flex-col p-6 space-y-4">
+              <SheetHeader>
+                <SheetTitle className="sr-only">TechSpace</SheetTitle>
+                <SheetDescription className="sr-only">
+                  tech space
+                </SheetDescription>
+              </SheetHeader>
+              <Link to="/">Home</Link>
+              <Link to="/products">Products</Link>
+              <Link to="/categories">Categories</Link>
+              <Link to="/about">About</Link>
+              <Link to="/contact">Contact</Link>
+            </SheetContent>
+          </Sheet>
         </div>{" "}
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button variant="" className="text-white md:hidden">
-              <Menu className="w-6 h-6" />
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="left" className="flex flex-col p-6 space-y-4">
-            <Link to="/">Home</Link>
-            <Link to="/products">Products</Link>
-            <Link to="/categories">Categories</Link>
-            <Link to="/about">About</Link>
-            <Link to="/contact">Contact</Link>
-          </SheetContent>
-        </Sheet>
       </div>
       {/* Mobile Menu */}
     </nav>

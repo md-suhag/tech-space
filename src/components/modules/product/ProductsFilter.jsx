@@ -15,8 +15,7 @@ const ProductsFilter = ({ query, setQuery, setProducts }) => {
       <Select
         value={query.sort}
         onValueChange={(value) => {
-          setQuery((prev) => ({ ...prev, sort: value }));
-          setQuery((prev) => ({ ...prev, page: 1 }));
+          setQuery((prev) => ({ ...prev, sort: value, page: 1 }));
           setProducts([]);
         }}
       >
@@ -38,9 +37,7 @@ const ProductsFilter = ({ query, setQuery, setProducts }) => {
       <Select
         value={query.category}
         onValueChange={(value) => {
-          setQuery((prev) => ({ ...prev, category: value }));
-
-          setQuery((prev) => ({ ...prev, page: 1 }));
+          setQuery((prev) => ({ ...prev, category: value, page: 1 }));
           setProducts([]);
         }}
       >
@@ -66,9 +63,7 @@ const ProductsFilter = ({ query, setQuery, setProducts }) => {
       <Select
         value={String(query.limit)}
         onValueChange={(value) => {
-          setQuery((prev) => ({ ...prev, limit: value }));
-          setQuery((prev) => ({ ...prev, page: 1 }));
-
+          setQuery((prev) => ({ ...prev, limit: value, page: 1 }));
           setProducts([]);
         }}
       >

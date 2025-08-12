@@ -48,7 +48,7 @@ const Products = () => {
   useEffect(() => {
     setQuery((prev) => ({ ...prev, page: 1 }));
     setProducts([]);
-  }, [debouncedMinPrice, debouncedMaxPrice]);
+  }, [debouncedMinPrice, debouncedMaxPrice, debouncedSearch]);
 
   useEffect(() => {
     if (!data?.data) return;
@@ -89,8 +89,11 @@ const Products = () => {
             <PriceRangeSlider
               query={query}
               onChange={([newMin, newMax]) => {
-                setQuery((prev) => ({ ...prev, minPrice: newMin }));
-                setQuery((prev) => ({ ...prev, maxPrice: newMax }));
+                setQuery((prev) => ({
+                  ...prev,
+                  minPrice: newMin,
+                  maxPrice: newMax,
+                }));
               }}
             />
             <ProductsFilter
