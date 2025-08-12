@@ -1,4 +1,4 @@
-import { useGetProductReviewsQuery } from "@/redux/features/product/productApi";
+import { useGetProductReviewsQuery } from "@/redux/features/review/reviewApi";
 import { Star } from "lucide-react";
 import React from "react";
 import { Skeleton } from "@/components/ui/skeleton";

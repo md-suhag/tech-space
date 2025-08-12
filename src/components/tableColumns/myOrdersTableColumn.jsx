@@ -98,6 +98,14 @@ export const myOrdersTableColumns = [
               View
             </Button>
           </Link>
+          {order.orderStatus === "Delivered" &&
+            order.paymentInfo.status === "Paid" && (
+              <Link to={`/dashboard/my-orders/${order._id}`} state={order}>
+                <Button size="sm" variant="outline">
+                  Review
+                </Button>
+              </Link>
+            )}
         </div>
       );
     },

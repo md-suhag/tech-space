@@ -1,9 +1,10 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ArrowLeft, Package, CreditCard, Truck, Receipt } from "lucide-react";
+import { ArrowLeft, CreditCard, Truck, Receipt } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { format } from "date-fns";
+import OrderItemsCard from "@/components/modules/dashboard/OrderItemsCard";
 
 const MyOrderDetails = () => {
   const location = useLocation();
@@ -119,41 +120,7 @@ const MyOrderDetails = () => {
           </Card>
 
           {/* Order Items */}
-          <Card className="shadow-lg lg:col-span-2">
-            <CardContent>
-              <div className="flex items workloads-center mb-4">
-                <Package className="h-6 w-6 text-primary mr-2" />
-                <h2 className="text-xl font-medium ">Order Items</h2>
-              </div>
-              {order.orderItems?.length > 0 ? (
-                <div className="space-y-4">
-                  {order.orderItems.map((item) => (
-                    <div
-                      key={item._id}
-                      className="border-b border-gray-200 pb-4 last:border-b-0"
-                    >
-                      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 ">
-                        <div>
-                          <span className="font-medium">Product ID</span>
-                          <p className="font-mono text-sm">{item.productId}</p>
-                        </div>
-                        <div>
-                          <span className="font-medium">Quantity</span>
-                          <p>{item.quantity}</p>
-                        </div>
-                        <div>
-                          <span className="font-medium">Price</span>
-                          <p className="font-semibold">৳{item.price}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <p className="">No items in this order.</p>
-              )}
-            </CardContent>
-          </Card>
+          <OrderItemsCard order={order} />
         </div>
       </div>
     </section>
