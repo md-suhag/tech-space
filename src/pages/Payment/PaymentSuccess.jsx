@@ -2,11 +2,12 @@ import Container from "@/components/shared/Container";
 import { clearCart } from "@/redux/features/cart/CartSlice";
 import React from "react";
 import { useDispatch } from "react-redux";
-import successImg from "@/assets/Success.svg";
+import successImg from "@/assets/SuccessImg.svg";
 
 const PaymentSuccess = () => {
   const dispatch = useDispatch();
   dispatch(clearCart());
+
   return (
     <Container>
       <div className="min-h-[80vh] flex flex-col gap-3 justify-center items-center  ">
