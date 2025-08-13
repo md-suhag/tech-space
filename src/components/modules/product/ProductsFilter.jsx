@@ -10,8 +10,7 @@ import {
 } from "@/components/ui/select";
 const ProductsFilter = ({ query, setQuery, setProducts }) => {
   return (
-    <div className=" flex flex-wrap gap-1  sm:gap-4 items-center  ">
-      <div>Filter:</div>
+    <div className=" flex flex-wrap gap-1  sm:gap-4 items-center  text-sm ">
       <Select
         value={query.sort}
         onValueChange={(value) => {

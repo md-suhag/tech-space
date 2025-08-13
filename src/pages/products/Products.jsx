@@ -81,7 +81,9 @@ const Products = () => {
       {!isLoading && (
         <>
           <div className="flex flex-col gap-2 items-center justify-center  p-4">
-            <h1 className=" text-2xl font-semibold mt-2">All Products</h1>
+            <h1 className=" text-2xl md:text-4xl font-bold mt-2 text-primary">
+              All Products
+            </h1>
             <SearchBar query={query} setQuery={setQuery} />
           </div>
 

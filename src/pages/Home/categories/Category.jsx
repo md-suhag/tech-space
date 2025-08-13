@@ -73,9 +73,7 @@ export default function Category() {
   return (
     <>
       <div className="flex items-center justify-between gap-1 my-2">
-        <h4 className="py-2 text-2xl font-semibold text-primary">
-          Popular Categories
-        </h4>
+        <h4 className="py-2 text-2xl font-bold text-primary">Categories</h4>
         <div>
           <button
             onClick={() => swiperRef.current?.slidePrev()}
@@ -115,9 +113,11 @@ export default function Category() {
         >
           {categories.map((category, index) => {
             return (
-              <SwiperSlide className="border rounded-[2px]" key={index}>
-                {" "}
-                <Link to={`/products?category=${category.name}`}>
+              <SwiperSlide className="border rounded-md" key={index}>
+                <Link
+                  to={`/products?category=${category.name}`}
+                  className="w-full"
+                >
                   <div
                     key={index}
                     className="flex flex-col items-center justify-center px-1 py-6"
