@@ -28,11 +28,19 @@ const signUpSchema = z.object({
     .email("Please enter a valid email address"),
   password: z
     .string()
-    .min(1, "Password is required")
-    .length(6, "Password must be at least 6 characters"),
+    .min(8, "Password must be at least 8 characters")
+    .regex(/^(?=.*[A-Z])/, {
+      message: "Password must contain at least 1 uppercase letter.",
+    })
+    .regex(/^(?=.*[!@#$%^&*])/, {
+      message: "Password must contain at least 1 special character.",
+    })
+    .regex(/^(?=.*\d)/, {
+      message: "Password must contain at least 1 number.",
+    }),
 });
 
-const SingUp = () => {
+const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [register, { isLoading: isRegisterLoading }] = useRegisterMutation();
 
@@ -221,4 +229,4 @@ const SingUp = () => {
   );
 };
 
-export default SingUp;
+export default SignUp;

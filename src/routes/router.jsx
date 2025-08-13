@@ -10,7 +10,6 @@ import PaymentSuccess from "@/pages/Payment/PaymentSuccess";
 import PaymentFail from "@/pages/Payment/PaymentFail";
 import Contact from "@/pages/ContactUs/Contact";
 import About from "@/pages/AboutUs/About";
-import SingUp from "@/pages/SignUp/SingUp";
 import SignIn from "@/pages/SignIn/SignIn";
 import Dashboard from "@/pages/Dashboard/Dashboard";
 import MyOrders from "@/pages/Dashboard/User/MyOrders/MyOrders";
@@ -29,6 +28,7 @@ import MyReviews from "@/pages/Dashboard/User/MyReviews/MyReviews";
 import PrivacyPolicy from "@/pages/PrivacyPolicy/PrivacyPolicy";
 import TermsAndConditions from "@/pages/TermsAndConditions/TermsAndConditions";
 import ReturnPolicy from "@/pages/ReturnPolicy/ReturnPolicy";
+import SignUp from "@/pages/SignUp/SignUp";
 
 const router = createBrowserRouter([
   {
@@ -107,7 +107,7 @@ const router = createBrowserRouter([
 
       {
         path: "/sign-up",
-        element: <SingUp />,
+        element: <SignUp />,
       },
       {
         path: "/sign-in",
