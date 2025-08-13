@@ -7,8 +7,8 @@ export function PriceRangeSlider({
   onChange,
   className,
   min = 0,
-  max = 50000,
-  step = 1000,
+  max = 200000,
+  step = 2000,
 }) {
   return (
     <div className={cn("flex flex-col gap-2 w-full max-w-md", className)}>

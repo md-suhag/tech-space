@@ -10,7 +10,7 @@ const productApi = baseApi.injectEndpoints({
         category = "",
         debouncedSearch = "",
         debouncedMinPrice = 0,
-        debouncedMaxPrice = 50000,
+        debouncedMaxPrice = "",
       }) => {
         const params = new URLSearchParams();
         params.set("page", String(page));

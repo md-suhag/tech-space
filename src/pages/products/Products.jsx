@@ -26,7 +26,7 @@ const Products = () => {
     sort: "newest",
     category: queryCategory ?? "all",
     minPrice: 0,
-    maxPrice: 50000,
+    maxPrice: 200000,
     search: "",
   });
 
