@@ -23,6 +23,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useAddReviewMutation } from "@/redux/features/review/reviewApi";
 import { toast } from "sonner";
+import { DialogDescription } from "@radix-ui/react-dialog";
 
 // Zod schema
 const reviewSchema = z.object({
@@ -80,6 +81,9 @@ export default function ReviewDialog({ productId, orderItemId }) {
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Write a Review</DialogTitle>
+          <DialogDescription className="sr-only">
+            Give a review
+          </DialogDescription>
         </DialogHeader>
 
         <Form {...form}>

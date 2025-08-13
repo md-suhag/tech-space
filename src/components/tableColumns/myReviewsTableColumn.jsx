@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { Button } from "../ui/button";
+
+import DeleteReviewCell from "./DeleteReviewCell";
 
 export const myReviewsTableColumns = [
   {
@@ -29,12 +30,6 @@ export const myReviewsTableColumns = [
   {
     id: "action",
     header: "Action",
-    cell: () => {
-      return (
-        <div>
-          <Button>Delete</Button>
-        </div>
-      );
-    },
+    cell: ({ row }) => <DeleteReviewCell review={row.original} />,
   },
 ];

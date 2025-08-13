@@ -14,7 +14,16 @@ const reviewApi = baseApi.injectEndpoints({
         url: `/reviews/customer`,
         method: "GET",
       }),
-      providesTags: ["MyReviews"],
+      providesTags: (result) =>
+        result?.data
+          ? [
+              ...result.data.map((review) => ({
+                type: "MyReviews",
+                id: review._id,
+              })),
+              { type: "MyReviews", id: "LIST" },
+            ]
+          : [{ type: "MyReviews", id: "LIST" }],
     }),
     addReview: builder.mutation({
       query: (payload) => ({
@@ -22,7 +31,17 @@ const reviewApi = baseApi.injectEndpoints({
         method: "POST",
         body: payload,
       }),
-      invalidatesTags: ["Review"],
+      invalidatesTags: ["Review", "MyReviews"],
+    }),
+    deleteMyReview: builder.mutation({
+      query: ({ reviewId }) => ({
+        url: `/reviews/${reviewId}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: (result, error, { reviewId }) => [
+        { type: "MyReviews", id: reviewId },
+        { type: "MyReviews", id: "LIST" },
+      ],
     }),
   }),
 });
@@ -31,4 +50,5 @@ export const {
   useAddReviewMutation,
   useGetProductReviewsQuery,
   useGetMyReviewsQuery,
+  useDeleteMyReviewMutation,
 } = reviewApi;
