@@ -4,6 +4,7 @@ import Container from "@/components/shared/Container";
 
 import NewArrival from "./NewArrival";
 import FeaturedProducts from "./FeaturedProducts";
+import Benefits from "./Benefits";
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
       <Category />
       <FeaturedProducts />
       <NewArrival />
+      <Benefits />
     </Container>
   );
 };
