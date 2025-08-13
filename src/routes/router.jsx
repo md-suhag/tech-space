@@ -26,6 +26,9 @@ import AllProducts from "@/pages/Dashboard/Admin/AllProducts/AllProducts";
 import EditProduct from "@/pages/Dashboard/Admin/EditProduct/EditProduct";
 import ErrorPage from "@/pages/Error/ErrorPage";
 import MyReviews from "@/pages/Dashboard/User/MyReviews/MyReviews";
+import PrivacyPolicy from "@/pages/PrivacyPolicy/PrivacyPolicy";
+import TermsAndConditions from "@/pages/TermsAndConditions/TermsAndConditions";
+import ReturnPolicy from "@/pages/ReturnPolicy/ReturnPolicy";
 
 const router = createBrowserRouter([
   {
@@ -88,6 +91,18 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+      },
+      {
+        path: "/privacy-policy",
+        element: <PrivacyPolicy />,
+      },
+      {
+        path: "/terms",
+        element: <TermsAndConditions />,
+      },
+      {
+        path: "/return-policy",
+        element: <ReturnPolicy />,
       },
 
       {

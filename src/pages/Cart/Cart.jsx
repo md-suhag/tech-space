@@ -7,6 +7,7 @@ import { Separator } from "@/components/ui/separator";
 import { Link } from "react-router-dom";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
+import EmptyCart from "@/assets/empty-cart.svg";
 
 const Cart = () => {
   const { add, remove, decrease } = useCart();
@@ -30,13 +31,16 @@ const Cart = () => {
   if (!cartItems || cartItems.length === 0) {
     return (
       <Container>
-        <section className="text-center py-10 text-muted-foreground min-h-screen flex justify-center items-center">
-          <div>
-            <p className="mb-5">Your cart is empty.</p>
-            <Button asChild>
-              <Link to="/products">Continue Shopping</Link>
-            </Button>
-          </div>
+        <section className="text-center py-10 text-muted-foreground min-h-[80vh] flex flex-col gap-4 justify-center items-center">
+          <img
+            src={EmptyCart}
+            alt="empty cart"
+            className="w-1/2 md:w-1/3 lg:w-1/5"
+          />
+          <p className="">Your cart is empty.</p>
+          <Button asChild>
+            <Link to="/products">Continue Shopping</Link>
+          </Button>
         </section>
       </Container>
     );

@@ -13,7 +13,7 @@ const SearchBar = React.memo(({ query, setQuery }) => {
       <Input
         type="search"
         className="p-3 sm:py-6 sm:px-4"
-        placeholder="search products"
+        placeholder="Type here to search products..."
         value={query.search}
         onChange={(e) =>
           setQuery((prev) => ({ ...prev, search: e.target.value }))
