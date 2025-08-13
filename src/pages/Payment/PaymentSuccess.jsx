@@ -2,7 +2,7 @@ import Container from "@/components/shared/Container";
 import { clearCart } from "@/redux/features/cart/CartSlice";
 import React from "react";
 import { useDispatch } from "react-redux";
-import successImg from "@/assets/success.svg";
+import successImg from "@/assets/Success.svg";
 
 const PaymentSuccess = () => {
   const dispatch = useDispatch();

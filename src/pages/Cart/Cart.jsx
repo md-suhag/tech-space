@@ -7,7 +7,7 @@ import { Separator } from "@/components/ui/separator";
 import { Link } from "react-router-dom";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
-import EmptyCart from "@/assets/empty-cart.svg";
+import EmptyCart from "@/assets/Empty-cart.svg";
 
 const Cart = () => {
   const { add, remove, decrease } = useCart();

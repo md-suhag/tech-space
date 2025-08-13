@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import notFounImg from "@/assets/not-found.svg";
+import notFounImg from "@/assets/Not-found.svg";
 
 const ErrorPage = () => {
   const navigate = useNavigate();
