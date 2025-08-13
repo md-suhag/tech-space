@@ -25,6 +25,7 @@ import AddProduct from "@/pages/Dashboard/Admin/AddProduct/AddProduct";
 import AllProducts from "@/pages/Dashboard/Admin/AllProducts/AllProducts";
 import EditProduct from "@/pages/Dashboard/Admin/EditProduct/EditProduct";
 import ErrorPage from "@/pages/Error/ErrorPage";
+import MyReviews from "@/pages/Dashboard/User/MyReviews/MyReviews";
 
 const router = createBrowserRouter([
   {
@@ -129,6 +130,14 @@ const router = createBrowserRouter([
             element: <MyOrderDetails />,
           },
         ],
+      },
+      {
+        path: "my-reviews/",
+        element: (
+          <ProtectedRoutes role="customer">
+            <MyReviews />
+          </ProtectedRoutes>
+        ),
       },
       {
         path: "customers",

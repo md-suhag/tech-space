@@ -9,6 +9,13 @@ const reviewApi = baseApi.injectEndpoints({
       }),
       providesTags: ["Review"],
     }),
+    getMyReviews: builder.query({
+      query: () => ({
+        url: `/reviews/customer`,
+        method: "GET",
+      }),
+      providesTags: ["MyReviews"],
+    }),
     addReview: builder.mutation({
       query: (payload) => ({
         url: `/reviews/${payload.productId}`,
@@ -20,4 +27,8 @@ const reviewApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useAddReviewMutation, useGetProductReviewsQuery } = reviewApi;
+export const {
+  useAddReviewMutation,
+  useGetProductReviewsQuery,
+  useGetMyReviewsQuery,
+} = reviewApi;

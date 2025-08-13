@@ -1,9 +1,8 @@
 import {
-  EditIcon,
   Home,
   List,
-  ListOrdered,
   ListOrderedIcon,
+  MessageSquare,
   Plus,
   Receipt,
   UsersRoundIcon,
@@ -16,17 +15,22 @@ import {
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarMenu,
-  SidebarMenuButton,
   SidebarMenuItem,
 } from "../../ui/sidebar";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { SidebarNavLink } from "./SidebarNavLink";
+
 const customerMenu = [
   {
     title: "My Orders",
     url: "/dashboard/my-orders",
     icon: ListOrderedIcon,
+  },
+  {
+    title: "My Reviews",
+    url: "/dashboard/my-reviews",
+    icon: MessageSquare,
   },
 ];
 
