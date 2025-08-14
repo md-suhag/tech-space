@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Facebook, Instagram, Twitter, ShoppingCart } from "lucide-react";
+import sslCommerzImg from "@/assets/sslcommerz-banner.png";
 
 const Footer = () => {
   return (
@@ -76,8 +77,11 @@ const Footer = () => {
         </div>
       </div>
 
+      <div className="container mx-auto my-4 px-4 md:border-b ">
+        <img src={sslCommerzImg} alt="ssl-commerz-img" className="w-full" />
+      </div>
       {/* Copyright Section */}
-      <div className="py-2 mt-6 text-sm text-center text-white border-t ">
+      <div className="my-4 text-sm text-center text-white  ">
         © {new Date().getFullYear()} TechSpace. All rights reserved.
       </div>
     </footer>
