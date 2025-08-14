@@ -4,6 +4,7 @@ import { SidebarProvider, SidebarTrigger } from "../ui/sidebar";
 import DashboardSidebar from "../modules/dashboard/DashboardSidebar";
 import { User2Icon } from "lucide-react";
 import DashboardUserMenu from "../modules/dashboard/DashboardUserMenu";
+import GAListener from "../misc/GAListener";
 
 const DashboardLayout = () => {
   return (
@@ -17,6 +18,7 @@ const DashboardLayout = () => {
         </div>
 
         <Outlet />
+        <GAListener />
       </main>
     </SidebarProvider>
   );
