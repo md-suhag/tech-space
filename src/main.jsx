@@ -9,12 +9,17 @@ import { persistor, store } from "./redux/store";
 import { Toaster } from "sonner";
 import { PersistGate } from "redux-persist/integration/react";
 import AuthLoader from "./components/misc/AuthLoader";
+import ReactGA from "react-ga4";
+import GAListener from "./components/misc/GAListener";
+
+ReactGA.initialize("G-D9WN1NRVRS");
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <AuthLoader>
+          <GAListener />
           <RouterProvider router={router}></RouterProvider>
         </AuthLoader>
       </PersistGate>

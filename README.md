@@ -35,7 +35,6 @@ https://tech-space-client.vercel.app
 
 - **Admin Dashboard** – Monitor and manage the platform.
 - **User & Vendor Management** – Approve, suspend, or delete accounts.
-- **Product Management** – Add, edit, and manage product listings.
 - **Order Management** – View and update order statuses.
 
 ---
