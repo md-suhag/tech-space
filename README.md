@@ -157,6 +157,18 @@ http://localhost:5173
 
 ---
 
+## Demo Credentials
+
+Admin email: admin@gmail.com
+<br>
+Admin password: Admin123#
+<br>
+User email: user@gmail.com
+<br>
+User password: User123#
+
+---
+
 ## Usage
 
 ### For Customers

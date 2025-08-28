@@ -35,11 +35,11 @@ const customerMenu = [
 ];
 
 const adminMenu = [
-  {
-    title: "Customers",
-    url: "/dashboard/customers",
-    icon: UsersRoundIcon,
-  },
+  // {
+  //   title: "Customers",
+  //   url: "/dashboard/customers",
+  //   icon: UsersRoundIcon,
+  // },
   {
     title: "All Orders",
     url: "/dashboard/all-orders",
