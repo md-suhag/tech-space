@@ -1,3 +1,4 @@
+import { lazy } from "react";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import MainLayout from "@/components/layout/MainLayout";
 import Home from "@/pages/Home/Home";
@@ -12,19 +13,37 @@ import Contact from "@/pages/ContactUs/Contact";
 import About from "@/pages/AboutUs/About";
 import SignIn from "@/pages/SignIn/SignIn";
 import Dashboard from "@/pages/Dashboard/Dashboard";
-import MyOrders from "@/pages/Dashboard/User/MyOrders/MyOrders";
+const MyOrders = lazy(() => import("@/pages/Dashboard/User/MyOrders/MyOrders"));
 import Cart from "@/pages/Cart/Cart";
 import Checkout from "@/pages/Checkout/Checkout";
-import AllOrders from "@/pages/Dashboard/Admin/Orders/AllOrders";
-import Customers from "@/pages/Dashboard/Admin/Cutomers/Customers";
+const AllOrders = lazy(() =>
+  import("@/pages/Dashboard/Admin/Orders/AllOrders")
+);
+const Customers = lazy(() =>
+  import("@/pages/Dashboard/Admin/Cutomers/Customers")
+);
 import PaymentCancel from "@/pages/Payment/PaymentCancel";
-import MyOrderDetails from "@/pages/Dashboard/User/MyOrders/MyOrderDetails";
-import AllOrderDetails from "@/pages/Dashboard/Admin/Orders/AllOrderDetails";
-import AddProduct from "@/pages/Dashboard/Admin/AddProduct/AddProduct";
-import AllProducts from "@/pages/Dashboard/Admin/AllProducts/AllProducts";
-import EditProduct from "@/pages/Dashboard/Admin/EditProduct/EditProduct";
+const MyOrderDetails = lazy(() =>
+  import("@/pages/Dashboard/User/MyOrders/MyOrderDetails")
+);
+
+const AllOrderDetails = lazy(() =>
+  import("@/pages/Dashboard/Admin/Orders/AllOrderDetails")
+);
+const AddProduct = lazy(() =>
+  import("@/pages/Dashboard/Admin/AddProduct/AddProduct")
+);
+const AllProducts = lazy(() =>
+  import("@/pages/Dashboard/Admin/AllProducts/AllProducts")
+);
+
+const EditProduct = lazy(() =>
+  import("@/pages/Dashboard/Admin/EditProduct/EditProduct")
+);
 import ErrorPage from "@/pages/Error/ErrorPage";
-import MyReviews from "@/pages/Dashboard/User/MyReviews/MyReviews";
+const MyReviews = lazy(() =>
+  import("@/pages/Dashboard/User/MyReviews/MyReviews")
+);
 import PrivacyPolicy from "@/pages/PrivacyPolicy/PrivacyPolicy";
 import TermsAndConditions from "@/pages/TermsAndConditions/TermsAndConditions";
 import ReturnPolicy from "@/pages/ReturnPolicy/ReturnPolicy";

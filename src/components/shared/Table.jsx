@@ -13,10 +13,11 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-export function DashboardTable({ columns, data }) {
+export function DashboardTable({ columns, data, isLoading }) {
   const table = useReactTable({
     data,
     columns,
+
     getCoreRowModel: getCoreRowModel(),
   });
 
@@ -42,7 +43,16 @@ export function DashboardTable({ columns, data }) {
           ))}
         </TableHeader>
         <TableBody>
-          {table.getRowModel().rows?.length ? (
+          {isLoading ? (
+            <TableRow>
+              <TableCell colSpan={columns.length} className="h-24 text-center">
+                <div className="flex justify-center items-center">
+                  <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 "></div>
+                  <span className="ml-2">Loading...</span>
+                </div>
+              </TableCell>
+            </TableRow>
+          ) : table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => (
               <TableRow
                 key={row.id}

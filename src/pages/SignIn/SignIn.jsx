@@ -31,7 +31,7 @@ const signInSchema = z.object({
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [login, { isLoading: isLoginLoading }] = useLoginMutation();
+  const [login] = useLoginMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -46,6 +46,21 @@ const SignIn = () => {
   });
 
   const { isSubmitting } = form.formState;
+
+  // Demo credentials
+  const demoAccounts = {
+    user: { email: "user@gmail.com", password: "User123#" },
+    admin: { email: "admin@gmail.com", password: "Admin123#" },
+  };
+
+  const fillDemoCredentials = (role) => {
+    const creds = demoAccounts[role];
+    if (creds) {
+      form.setValue("email", creds.email);
+      form.setValue("password", creds.password);
+      toast.info(`Demo ${role} credentials filled!`);
+    }
+  };
 
   async function onSubmit(values) {
     try {
@@ -101,6 +116,26 @@ const SignIn = () => {
               onSubmit={form.handleSubmit(onSubmit)}
               className="space-y-6 bg-white p-8 border border-gray-200 rounded-lg shadow-sm"
             >
+              <div>
+                <p className="text-center  mb-1">Demo credentials</p>
+
+                <div className="flex gap-3 justify-center">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => fillDemoCredentials("user")}
+                  >
+                    User
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => fillDemoCredentials("admin")}
+                  >
+                    Admin
+                  </Button>
+                </div>
+              </div>
               {/* Root error message */}
               {form.formState.errors.root && (
                 <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-md text-sm">
